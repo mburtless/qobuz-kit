@@ -1,6 +1,6 @@
 module qobuz-kit
 
-go 1.23.0
+go 1.27.2
 
 require (
 	github.com/charmbracelet/bubbles v0.21.1-0.20250623103423-23b8fd6302d7

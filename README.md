@@ -17,7 +17,7 @@ This is an unofficial tool that uses Qobuz's session API and is not affiliated w
 
 ## Getting started
 
-You'll need Go 1.23 or newer, a Qobuz account, and an interactive terminal.
+You'll need Go 1.27.2 or newer, a Qobuz account, and an interactive terminal.
 
 ### Build from source
 
@@ -113,11 +113,12 @@ Qobuz's API behavior can change. If you're trying the tool for the first time, u
 ```sh
 go test ./...
 go vet ./...
+make govulncheck
 ```
 
 ### Releases
 
-GitHub Actions runs tests and vet, then uses GoReleaser to publish a GitHub release when a version tag such as `v0.1.0` is pushed. Releases include binaries for Linux, macOS, and Windows on amd64 and arm64, packaged with this README, plus SHA-256 checksums. Tags such as `v0.1.0-rc.1` produce prereleases.
+GitHub Actions runs tests, vet, and govulncheck, then uses GoReleaser to publish a GitHub release when a version tag such as `v0.1.0` is pushed. Releases include binaries for Linux, macOS, and Windows on amd64 and arm64, packaged with this README, plus SHA-256 checksums. Tags such as `v0.1.0-rc.1` produce prereleases.
 
 After committing and pushing the release changes, create and push the version tag:
 
