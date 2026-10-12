@@ -115,6 +115,28 @@ go test ./...
 go vet ./...
 ```
 
+### Releases
+
+GitHub Actions runs tests and vet, then uses GoReleaser to publish a GitHub release when a version tag such as `v0.1.0` is pushed. Releases include binaries for Linux, macOS, and Windows on amd64 and arm64, packaged with this README, plus SHA-256 checksums. Tags such as `v0.1.0-rc.1` produce prereleases.
+
+After committing and pushing the release changes, create and push the version tag:
+
+```sh
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+The workflow uses GitHub's built-in `GITHUB_TOKEN`; no additional release secret is needed.
+
+With GoReleaser v2.18.3 installed, validate the configuration and build release archives locally without publishing:
+
+```sh
+goreleaser check
+goreleaser release --snapshot --clean
+```
+
+Local release artifacts are written to `dist/`.
+
 Run from source with the Makefile:
 
 ```sh
