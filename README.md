@@ -111,14 +111,15 @@ Qobuz's API behavior can change. If you're trying the tool for the first time, u
 ## Development
 
 ```sh
-go test ./...
+go mod tidy -diff
+go test -race ./...
 go vet ./...
 make govulncheck
 ```
 
 ### Releases
 
-GitHub Actions runs tests, vet, and govulncheck, then uses GoReleaser to publish a GitHub release when a version tag such as `v0.1.0` is pushed. Releases include binaries for Linux, macOS, and Windows on amd64 and arm64, packaged with this README, plus SHA-256 checksums. Tags such as `v0.1.0-rc.1` produce prereleases.
+GitHub Actions checks module consistency, runs tests with race detection, vet, and govulncheck, builds release archives, and smoke tests the Linux amd64 binary with `--help`. These checks run on pull requests and version tags. After they pass for a tag such as `v0.1.0`, GoReleaser publishes a GitHub release. Releases include binaries for Linux, macOS, and Windows on amd64 and arm64, packaged with this README, plus SHA-256 checksums. Tags such as `v0.1.0-rc.1` produce prereleases.
 
 After committing and pushing the release changes, create and push the version tag:
 
